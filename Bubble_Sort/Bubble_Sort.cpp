@@ -1,7 +1,7 @@
 // Bubble sort in C++
 
 #include <bits/stdc++.h>
-#include <iostream>
+
 using namespace std;
 
 // bubble sort function
