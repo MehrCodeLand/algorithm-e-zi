@@ -36,7 +36,7 @@ void selectionSort(int array[], int size) {
     swap(&array[min_idx], &array[step]);
   }
 }
-
+// main
 int main() {
   int data[] = {20, 12, 10, 15, 2};
   int size = sizeof(data) / sizeof(data[0]);

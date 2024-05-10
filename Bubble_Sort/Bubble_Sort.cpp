@@ -1,52 +1,48 @@
-// Bubble sort in C++
-
+//  Bubble Sort in C++
 #include <bits/stdc++.h>
 
 using namespace std;
 
-// bubble sort function
-void bubbleSort(int array[], int size) {
-
-  // loop to access each array element
-  for (int step = 0; step < size; ++step)
-  {
-    // loop to compare array elements
-    for (int i = 0; i < size - step; ++i) 
+// Bubble Sort function
+void bubbleSort(int arr[], int n)
+{
+    int i, j;
+    bool swapped;
+    for (i = 0; i < n - 1; i++) 
     {
-      // compare two adjacent elements
-      // change > to < to sort in descending order
-      if (array[i] > array[i + 1]) 
-      {
-        // swapping elements if elements
-        // are not in the intended order
-        int temp = array[i];
-        array[i] = array[i + 1];
-        array[i + 1] = temp;
-
-      }
+        swapped = false;
+        for (j = 0; j < n - i - 1; j++) 
+        {
+            if (arr[j] > arr[j + 1]) 
+            {
+                swap(arr[j], arr[j + 1]);
+                swapped = true;
+            }
+        }
+        // If no two elements were swapped
+        // by inner loop, then break
+        if (swapped == false)
+            break;
     }
-  }
 }
 
-// print array   function
-void printArray(int array[], int size) {
-  for (int i = 0; i < size; ++i) 
-  {
-    cout << "  " << array[i];
-  }
-  cout << "\n";
+// Function to print an array
+void printArray(int arr[], int size)
+{
+    int i;
+    for (i = 0; i < size; i++)
+        cout << " " << arr[i];
 }
 
-int main() {
-  int data[] = {-2, 45, 0, 11, -9};
-  
-  // find array's length
-  int size = sizeof(data) / sizeof(data[0]);
-  
-  bubbleSort(data, size);
-  
-  cout << "Sorted Array in Ascending Order:\n";  
-  printArray(data, size);
+// main
+int main()
+{
+    int arr[] = { 64, 34, 25, 12, 22, 11, 90 };
+    int N = sizeof(arr) / sizeof(arr[0]);
+    bubbleSort(arr, N);
+    cout << "Sorted array: \n";
+    printArray(arr, N);
+    return 0;
 }
 
 // This code is contributed by Ali Barzegari Dahaj
