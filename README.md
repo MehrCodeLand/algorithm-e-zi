@@ -7,7 +7,7 @@
  4|Selection_Sort|[C++]()
 
 
-## :handshake: کمک کردن
+## :handshake: همکاری
 
 **شما هم میتوانید با fork کردن و pull request به بهتر کردن این لیست کمک کنید**
 
@@ -20,12 +20,8 @@
 
 ### :ghost: اسامی
 
-* مهرشاد اسدی
-* عرفان شفیعی
-* علی برزگری دهج
-
 ### :id: شناسه کاربری
 
-* [Mehrshad](https://github.com/MehrCodeLand)
-* [Ali](https://github.com/Ali-Barzegari-d)
-* [Erfan](https://github.com/erfanshafieeee)
+* [Ali Barzegari Dahaj](https://github.com/Ali-Barzegari-d)
+* [Erfan Shafiee](https://github.com/erfanshafieeee)
+* [Mohammad Mahdi emadi]()
