@@ -18,9 +18,7 @@
 
  ## :heart: تشکر از
 
-### :ghost: اسامی
-
-### :id: شناسه کاربری
+### :id: اسامی
 
 * [Ali Barzegari Dahaj](https://github.com/Ali-Barzegari-d)
 * [Erfan Shafiee](https://github.com/erfanshafieeee)
