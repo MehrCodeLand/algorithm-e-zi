@@ -1,10 +1,10 @@
 # :computer:  algorithm-e-zi
 ردیف |  نام الگوریتم | زبان ها | توضیحات الگوریتم |یوتیوب|بیشتر بدانیم!
  --- | --- | --- | --- | --- | --- 
- 1|Bubble_Sort|[C++]()
- 2|Merge_Sort|[C++]()
- 3|Quick_Sort|[C++]()
- 4|Selection_Sort|[C++]()
+ 1|Bubble_Sort|[C++](),[Python]()
+ 2|Merge_Sort|[C++](),[Python]()
+ 3|Quick_Sort|[C++](),[Python]()
+ 4|Selection_Sort|[C++](),[Python]()
 
 
 ## :handshake: همکاری
