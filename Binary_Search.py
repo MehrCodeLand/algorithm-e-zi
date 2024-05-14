@@ -25,3 +25,6 @@ if result != -1:
     print(f"Element {target} is present at index {result}.")
 else:
     print(f"Element {target} is not present in the array.")
+
+
+# This code is contributed by Erfan Shafiee
