@@ -1,12 +1,12 @@
 # :computer:  algorithm-e-zi
 ردیف |  نام الگوریتم | زبان ها | توضیحات الگوریتم |یوتیوب|بیشتر بدانیم!
  --- | --- | --- | --- | --- | --- 
- 1|Bubble_Sort|[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Bubble_Sort/Bubble_Sort.cpp),[Python]()|[توضیحات الگوریتم](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Bubble_Sort/README.md)
- 2|Merge_Sort|[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Merge_Sort/Merge_Sort.cpp),[Python]()|[توضیحات الگوریتم](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Merge_Sort/README.md)
- 3|Quick_Sort|[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Quick_Sort/Quick_Sort.cpp),[Python]()|[توضیحات الگوریتم](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Quick_Sort/README.md)
- 4|Selection_Sort|[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Selection_Sort/Selection_Sort.cpp),[Python]()|[توضیحات الگوریتم](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Selection_Sort/README.md)
- 5|Shell_Sort|[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Shell_Sort/Shell_Sort.cpp),[Python]()|[توضیحات الگوریتم]()
- 6|Binary_Search|[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Binary_Search/Binary_Search.cpp),[Python]()|[توضیحات الگوریتم](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Binary_Search/README.md)
+ 1|Bubble_Sort|[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Bubble_Sort/Bubble_Sort.cpp),[Python](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Bubble_Sort/Bubble_sort.py)|[توضیحات الگوریتم](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Bubble_Sort/README.md)
+ 2|Merge_Sort|[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Merge_Sort/Merge_Sort.cpp),[Python](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Merge_Sort/Merge_Sort.py)|[توضیحات الگوریتم](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Merge_Sort/README.md)
+ 3|Quick_Sort|[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Quick_Sort/Quick_Sort.cpp),[Python](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Quick_Sort/Quick_Sort.py)|[توضیحات الگوریتم](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Quick_Sort/README.md)
+ 4|Selection_Sort|[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Selection_Sort/Selection_Sort.cpp),[Python](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Selection_Sort/Selection_Sort.py)|[توضیحات الگوریتم](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Selection_Sort/README.md)
+ 5|Shell_Sort|[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Shell_Sort/Shell_Sort.cpp),[Python](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Shell_Sort/Shell_sort.py)|[توضیحات الگوریتم]()
+ 6|Binary_Search|[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Binary_Search/Binary_Search.cpp),[Python](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Binary_Search/Binary_Search.py)|[توضیحات الگوریتم](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Binary_Search/README.md)
  7|DFS|[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/DFS/DFS.cpp),[Python]()|[توضیحات الگوریتم]()
  8|Insertion_Sort|[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Insertion_Sort/Insertion_Sort.cpp),[Python]()|[توضیحات الگوریتم]()
 
