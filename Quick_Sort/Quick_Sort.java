@@ -72,3 +72,5 @@ class Quick_Sort {
     System.out.println(Arrays.toString(data));
   }
 }
+
+// This code is contributed by Ali Barzegari Dahaj
