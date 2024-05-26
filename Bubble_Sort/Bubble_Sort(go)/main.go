@@ -1,4 +1,4 @@
-// Binary Search in go
+// Bubble sort in go
 package main
 
 import (
