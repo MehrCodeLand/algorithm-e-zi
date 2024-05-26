@@ -7,8 +7,8 @@
  4|Selection_Sort|[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Selection_Sort/Selection_Sort.cpp),[Python](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Selection_Sort/Selection_Sort.py),[java](),[go](),[C#]()|[توضیحات الگوریتم](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Selection_Sort/README.md)
  5|Shell_Sort|[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Shell_Sort/Shell_Sort.cpp),[Python](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Shell_Sort/Shell_sort.py),[java](),[go](),[C#]()|[توضیحات الگوریتم]()
  6|Binary_Search|[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Binary_Search/Binary_Search.cpp),[Python](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Binary_Search/Binary_Search.py),[java](),[go](),[C#]()|[توضیحات الگوریتم](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Binary_Search/README.md)
- 7|DFS|[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/DFS/DFS.cpp),[Python](),[java](),[go](),[C#]()|[توضیحات الگوریتم]()
- 8|Insertion_Sort|[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Insertion_Sort/Insertion_Sort.cpp),[Python](),[java](),[go](),[C#]()|[توضیحات الگوریتم]()
+ 7|DFS|[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/DFS/DFS.cpp),[Python](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/DFS/DFS.py),[java](),[go](),[C#]()|[توضیحات الگوریتم]()
+ 8|Insertion_Sort|[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Insertion_Sort/Insertion_Sort.cpp),[Python](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Insertion_Sort/Insertion_sort.py),[java](),[go](),[C#]()|[توضیحات الگوریتم]()
 
 
 ## :handshake: همکاری
