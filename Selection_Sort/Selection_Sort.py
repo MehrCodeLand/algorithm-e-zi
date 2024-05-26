@@ -14,6 +14,8 @@ def selection_sort(arr):
         arr[i], arr[min_index] = arr[min_index], arr[i]
     return arr
 
+
+#Example
 data=[-2,45,0,11,-9]
 print("Sorted Array in Ascending Order: ")
 print(selection_sort(data))
