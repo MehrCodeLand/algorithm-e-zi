@@ -33,7 +33,7 @@ def merge_sort(arr):
     return arr
 
 
-
+#Example
 data=[-2,45,0,11,-9]
 print("Sorted Array in Ascending Order: ")
 print(merge_sort(data))
