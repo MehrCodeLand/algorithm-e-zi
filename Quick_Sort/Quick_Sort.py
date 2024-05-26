@@ -17,7 +17,7 @@ def quick_sort(arr):
     return quick_sort(left) + middle + quick_sort(right)
 
 
-
+#Example
 data=[-2,45,0,11,-9]
 print("Sorted Array in Ascending Order: ")
 print(quick_sort(data))

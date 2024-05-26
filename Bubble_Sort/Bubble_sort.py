@@ -15,6 +15,7 @@ def bubbleSort(array,size):
                 array[i+1]=temp
     return array
 
+#Eample
 data=[-2,45,0,11,-9]
 #find array's length
 size=len(data)

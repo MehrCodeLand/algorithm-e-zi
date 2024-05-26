@@ -17,7 +17,7 @@ def binary_search(arr, target):
     return -1  # Return -1 if the target element is not found.
 
 
-
+#Example
 arr = [1, 3, 5, 7, 9, 11, 13, 15]
 target = 7
 result = binary_search(arr, target)
