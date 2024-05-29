@@ -1,5 +1,5 @@
 # :computer:  algorithm-e-zi
-ردیف |  نام الگوریتم | زبان ها | توضیحات الگوریتم |یوتیوب|بیشتر بدانیم!
+ردیف |  نام الگوریتم | زبان ها | توضیحات الگوریتم | عملکرد |یوتیوب|بیشتر بدانیم!
  --- | --- | --- | --- | --- | --- 
  1|Bubble_Sort|[C](),[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Bubble_Sort/Bubble_Sort.cpp),[C#](),[Python](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Bubble_Sort/Bubble_sort.py),[Java](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Bubble_Sort/Bubble_Sort.java),[Go](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Bubble_Sort/Bubble_Sort(go)/main.go)|[توضیحات الگوریتم](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Bubble_Sort/README.md)
  2|Insertion_Sort|[C](),[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Insertion_Sort/Insertion_Sort.cpp),[C#](),[Python](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Insertion_Sort/Insertion_sort.py),[Java](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Insertion_Sort/Insertion_Sort.java),[Go](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/Insertion_Sort/Insertion_Sort(go)/main.go)|[توضیحات الگوریتم]()
