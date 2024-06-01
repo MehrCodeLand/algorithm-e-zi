@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Algorithms</title>
+    <style>
+      :root {
+        --primary-color: #0d47a1;
+        --secondary-color: #42a5f5;
+        --background-color: #e3f2fd;
+        --text-color: #0d47a1;
+        --link-color: #ffffff;
+        --link-hover-bg: #1565c0;
+        --card-bg: #ffffff;
+        --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        --transition-speed: 0.3s;
+        --header-bg: linear-gradient(135deg, #0d47a1, #1976d2);
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        overflow-x: hidden; /* Prevent horizontal scroll */
+      }
+      header {
+        background: var(--header-bg);
+        color: var(--link-color);
+        padding: 50px 20px;
+        text-align: center;
+        width: 100%;
+        box-shadow: var(--card-shadow);
+      }
+      header h1 {
+        margin: 0;
+        font-size: 2.5rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      header p {
+        margin: 10px 0 0;
+        font-size: 1.2rem;
+      }
+      .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 10px;
+        padding: 40px 20px;
+        width: 100%;
+        max-width: 1200px;
+        box-sizing: border-box; /* Ensure padding doesn't cause overflow */
+      }
+      .card {
+        background: var(--card-bg);
+        color: var(--primary-color);
+        text-decoration: none;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: var(--card-shadow);
+        transition: transform var(--transition-speed),
+          box-shadow var(--transition-speed);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.9rem;
+        text-align: center;
+        height: 60px;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        background-color: var(--link-hover-bg);
+        color: var(--link-color);
+      }
+      footer {
+        background: var(--primary-color);
+        color: var(--link-color);
+        text-align: center;
+        padding: 20px 0;
+        width: 100%;
+        box-shadow: var(--card-shadow);
+        margin-top: auto;
+      }
+      footer p {
+        margin: 0;
+        font-size: 1rem;
+      }
+      @media (max-width: 600px) {
+        header h1 {
+          font-size: 2rem;
+        }
+        header p {
+          font-size: 1rem;
+        }
+        .card {
+          padding: 10px;
+          font-size: 0.8rem;
+          height: 50px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>algorithm-e-zi</h1>
+      <p>Visualized Algorithms</p>
+    </header>
+    <div class="container">
+      <a href="Bubble_Sort/bubble-sort.html" class="card">Bubble Sort</a>
+      <a href="Selection_Sort/selection-sort.html" class="card"
+        >Selection Sort</a
+      >
+      <a href="Insertion_Sort/insertion-sort.html" class="card"
+        >Insertion Sort</a
+      >
+      <a href="Shell_Sort/shell-sort.html" class="card">Shell Sort</a>
+      <a href="Quick_Sort/quick-sort.html" class="card">Quick Sort</a>
+      <a href="Binary_Search/binary-search.html" class="card">Binary Search</a>
+      <a href="Merge_Sort/merge-sort.html" class="card">Merge Sort</a>
+
+      <a href="BFS/bfs.html" class="card">BFS</a>
+      <a href="DFS/dfs.html" class="card">DFS</a>
+    </div>
+    <footer>
+      <p>&copy; 2024 algorithm-e-zi</p>
+    </footer>
+  </body>
+</html>
+
+<!-- This code is contributed by Amirmahdi Monzavi -->
