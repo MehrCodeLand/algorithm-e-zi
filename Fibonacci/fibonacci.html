@@ -74,11 +74,22 @@
       }
       .number-container {
         display: flex;
-        justify-content: center;
+        justify-content: start;
+        align-items: center;
+        flex-wrap: nowrap;
         padding: 10px;
         border-radius: 10px;
         background-color: #ffffff;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        max-width: 80vw;
+        overflow-x: auto;
+        gap: 10px;
+        border: 2px solid #0074d9;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+      .number-container:focus {
+        border-color: #005bb5;
+        box-shadow: 0 0 10px rgba(0, 116, 217, 0.5);
       }
       .number-square {
         display: flex;
@@ -99,21 +110,11 @@
       .number-square.active {
         background-color: #03a9f4;
         color: white;
+        transform: scale(1.1);
       }
       .number-square.generated {
         background-color: #4caf50;
         color: white;
-      }
-      .explanation {
-        margin-top: 20px;
-        font-size: 18px;
-        color: #0074d9;
-        text-align: center;
-        padding: 10px;
-        background-color: #ffffff;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        transition: background-color 0.3s ease, color 0.3s ease;
       }
       .error-message {
         color: red;
@@ -128,9 +129,7 @@
   </head>
   <body>
     <div class="container">
-      <div id="arrayContainer" class="number-container">
-        <div id="fibSquare" class="number-square">0</div>
-      </div>
+      <div id="arrayContainer" class="number-container"></div>
       <div class="input-container">
         <input
           type="text"
@@ -156,9 +155,6 @@
         />
         <span id="speedValue">1550</span>
       </div>
-      <div id="explanation" class="explanation">
-        Enter the term number and click "Start Fibonacci Sequence" to begin.
-      </div>
     </div>
     <script>
       let animationSpeed = 1550;
@@ -178,34 +174,30 @@
         return animationSpeed;
       }
 
-      function updateExplanation(text) {
-        document.getElementById("explanation").textContent = text;
-      }
-
       async function generateFibonacci(num) {
         const fibSequence = [0, 1];
-        const explanationBox = document.getElementById("explanation");
-        const fibSquare = document.getElementById("fibSquare");
+        const arrayContainer = document.getElementById("arrayContainer");
 
         for (let i = 2; i < num; i++) {
           fibSequence.push(fibSequence[i - 1] + fibSequence[i - 2]);
         }
 
+        arrayContainer.innerHTML = "";
+
         for (let i = 0; i < num; i++) {
-          fibSquare.classList.add("active");
+          const fibSquare = document.createElement("div");
+          fibSquare.className = "number-square";
           if (i === 0) {
-            updateExplanation(`Term 1: 0`);
             fibSquare.textContent = 0;
           } else if (i === 1) {
-            updateExplanation(`Term 2: 1`);
             fibSquare.textContent = 1;
           } else {
-            const termExplanation = `Term ${i + 1}: ${fibSequence[i - 2]} + ${
-              fibSequence[i - 1]
-            } = ${fibSequence[i]}`;
-            updateExplanation(termExplanation);
             fibSquare.textContent = fibSequence[i];
           }
+
+          arrayContainer.appendChild(fibSquare);
+
+          fibSquare.classList.add("active");
           await sleep(getAnimationSpeed());
           fibSquare.classList.remove("active");
           fibSquare.classList.add("generated");
@@ -213,11 +205,10 @@
             50,
             fibSquare.textContent.length * 20
           )}px`;
+          arrayContainer.scrollLeft = arrayContainer.scrollWidth;
           await sleep(getAnimationSpeed());
           fibSquare.classList.remove("generated");
         }
-
-        updateExplanation("Fibonacci sequence generation complete!");
       }
 
       async function startFibonacci() {
