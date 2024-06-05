@@ -12,15 +12,15 @@
 | 8    | BFS            | [C](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/BFS/BFS.c),[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/BFS/BFS.cpp),[C#](),[Python](),[Java](),[Go]()                                                                                                                                                                                                                                                                                                                                     | [توضیحات الگوریتم]()                                                                                  | [رابط کاربری](https://MehrCodeLand.github.io/algorithm-e-zi/BFS/bfs.html)                       |        |
 | 9    | DFS            | [C](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/DFS/DFS.c),[C++](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/DFS/DFS.cpp),[C#](),[Python](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/DFS/DFS.py),[Java](https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/DFS/DFS.java),[Go](<https://github.com/MehrCodeLand/algorithm-e-zi/blob/main/DFS/DFS(go)/main.go>)                                                                                                               | [توضیحات الگوریتم]()                                                                                  | [رابط کاربری](https://MehrCodeLand.github.io/algorithm-e-zi/DFS/dfs.html)                       |        |               |
 
+## :tv: پیاده سازی بصری
+
+**با زدن روی این [لینک](https://MehrCodeLand.github.io/algorithm-e-zi) میتونید یه انیمیشن کوچیک مرتبط به هر الگوریتم و نحوه کار کردنشون رو ببینید**
+
 ## :handshake: همکاری
 
 **شما هم میتوانید با fork کردن و pull request به بهتر کردن این لیست کمک کنید**
 
 **الگوریتم ها با زبان برنامه نویسی که هنوز استفاده نشده پذیرفته است**
-
-## :tv: پیاده سازی بصری
-
-**با زدن روی این [لینک](https://MehrCodeLand.github.io/algorithm-e-zi) میتونید یه انیمیشن کوچیک مرتبط به هر الگوریتم و نحوه کار کردنشون رو ببینید**
 
 ## :heart: تشکر از
 
