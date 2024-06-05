@@ -283,7 +283,7 @@
             await sleep(getAnimationSpeed());
 
             const neighbors = nodesMap.get(currentNode) || [];
-            neighbors.sort().reverse(); // Ensure right nodes are explored last
+            neighbors.sort().reverse();
             for (const neighbor of neighbors) {
               if (!visited.has(neighbor)) {
                 stack.push(neighbor);
