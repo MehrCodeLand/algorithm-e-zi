@@ -202,7 +202,7 @@
       }
 
       function createTree(nodes, edges) {
-        const treeData = d3.tree().nodeSize([50, 150])(
+        const treeData = d3.tree().nodeSize([70, 120])(
           d3
             .stratify()
             .id((d) => d.id)
@@ -248,15 +248,15 @@
 
         node
           .append("circle")
-          .attr("r", 10)
+          .attr("r", 18)
           .attr("fill", "#0074d9")
           .attr("stroke", "#fff")
           .attr("stroke-width", 3);
 
         node
           .append("text")
-          .attr("dy", 3)
-          .attr("x", (d) => (d.children ? -12 : 12))
+          .attr("dy", 6)
+          .attr("x", (d) => (d.children ? -19 : 19))
           .style("text-anchor", (d) => (d.children ? "end" : "start"))
           .text((d) => d.id)
           .attr("fill", "#0074d9")
