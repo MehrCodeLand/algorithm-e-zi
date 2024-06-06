@@ -316,6 +316,34 @@
         const edgeSet = new Set();
         const nodeIds = new Set(nodes.map((node) => node.id));
 
+        function find(parent, vertex) {
+          if (parent[vertex] === vertex) {
+            return vertex;
+          }
+          return find(parent, parent[vertex]);
+        }
+
+        function union(parent, rank, x, y) {
+          const xroot = find(parent, x);
+          const yroot = find(parent, y);
+
+          if (rank[xroot] < rank[yroot]) {
+            parent[xroot] = yroot;
+          } else if (rank[xroot] > rank[yroot]) {
+            parent[yroot] = xroot;
+          } else {
+            parent[yroot] = xroot;
+            rank[xroot]++;
+          }
+        }
+
+        const parent = {};
+        const rank = {};
+        nodeIds.forEach((id) => {
+          parent[id] = id;
+          rank[id] = 0;
+        });
+
         for (const [node1, node2] of edges) {
           if (!nodeIds.has(node1) || !nodeIds.has(node2)) {
             throw new Error(
@@ -333,6 +361,14 @@
             );
           }
           edgeSet.add(sortedEdge);
+
+          if (find(parent, node1) === find(parent, node2)) {
+            throw new Error(
+              `Graph contains a cycle with edge '${node1}-${node2}'.`
+            );
+          }
+
+          union(parent, rank, node1, node2);
 
           if (!nodesMap.has(node1)) nodesMap.set(node1, []);
           if (!nodesMap.has(node2)) nodesMap.set(node2, []);
