@@ -283,7 +283,7 @@
             await sleep(getAnimationSpeed());
 
             const neighbors = nodesMap.get(currentNode) || [];
-            neighbors.sort(); // Ensure left nodes are explored first
+            neighbors.sort();
             for (const neighbor of neighbors) {
               if (!visited.has(neighbor)) {
                 queue.push(neighbor);
