@@ -315,6 +315,7 @@
         const nodesMap = new Map();
         const edgeSet = new Set();
         const nodeIds = new Set(nodes.map((node) => node.id));
+        const hasParent = new Map();
 
         function find(parent, vertex) {
           if (parent[vertex] === vertex) {
@@ -342,6 +343,7 @@
         nodeIds.forEach((id) => {
           parent[id] = id;
           rank[id] = 0;
+          hasParent.set(id, false);
         });
 
         for (const [node1, node2] of edges) {
@@ -374,6 +376,14 @@
           if (!nodesMap.has(node2)) nodesMap.set(node2, []);
           nodesMap.get(node1).push(node2);
           nodesMap.get(node2).push(node1);
+
+          hasParent.set(node2, true);
+        }
+
+        for (const node of nodeIds) {
+          if (!nodesMap.has(node)) {
+            throw new Error(`Node '${node}' is not connected by any edge.`);
+          }
         }
 
         edges.forEach(([node1, node2]) => {
@@ -383,6 +393,33 @@
             childNode.parent = parentNode.id;
           }
         });
+
+        for (const [node, hasParentFlag] of hasParent.entries()) {
+          if (node !== nodes[0].id && !hasParentFlag) {
+            throw new Error(`Node '${node}' has no parent.`);
+          }
+        }
+
+        const visited = new Set();
+        const stack = [nodes[0].id];
+        while (stack.length > 0) {
+          const currentNode = stack.pop();
+          if (!visited.has(currentNode)) {
+            visited.add(currentNode);
+            const neighbors = nodesMap.get(currentNode) || [];
+            neighbors.forEach((neighbor) => {
+              if (!visited.has(neighbor)) {
+                stack.push(neighbor);
+              }
+            });
+          }
+        }
+
+        if (visited.size !== nodes.length) {
+          throw new Error(
+            "Graph is not fully connected. Some nodes are isolated."
+          );
+        }
 
         return nodesMap;
       }
