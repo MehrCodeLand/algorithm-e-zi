@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Insertion Sort</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f4f8;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      .input-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+      .input-field {
+        padding: 10px;
+        border: 2px solid #0074d9;
+        border-radius: 5px;
+        font-size: 16px;
+        width: 300px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+      .input-field:focus {
+        border-color: #005bb5;
+        box-shadow: 0 0 10px rgba(0, 116, 217, 0.5);
+      }
+      .button {
+        background-color: #0074d9;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease,
+          box-shadow 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .button:hover {
+        background-color: #005bb5;
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .button:disabled {
+        background-color: #a0c4ff;
+        cursor: not-allowed;
+      }
+      .speed-control {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 20px;
+      }
+      .speed-control input {
+        width: 200px;
+      }
+      .number-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .number-square {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 50px;
+        border: 2px solid #0074d9;
+        border-radius: 10px;
+        transition: transform 1s, background-color 1s, box-shadow 0.3s ease;
+        font-size: 18px;
+        color: #0074d9;
+        background-color: #e0f7ff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .number-square:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .number-square.active {
+        background-color: #03a9f4;
+        color: white;
+      }
+      .number-square.swapped {
+        background-color: #f44336;
+        color: white;
+      }
+      .number-square.selected {
+        background-color: #ff9800;
+        color: white;
+      }
+      .number-square.sorted {
+        background-color: #4caf50;
+        color: white;
+      }
+      .explanation {
+        margin-top: 20px;
+        font-size: 18px;
+        color: #0074d9;
+        text-align: center;
+        padding: 10px;
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+      .error-message {
+        color: red;
+        font-size: 14px;
+      }
+      @media (max-width: 600px) {
+        .number-square {
+          width: 40px;
+          height: 40px;
+          line-height: 40px;
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="arrayContainer" class="number-container"></div>
+      <div class="input-container">
+        <input
+          type="text"
+          id="numbers"
+          class="input-field"
+          placeholder="Enter numbers (comma-separated)"
+          autocomplete="off"
+        />
+        <button id="startButton" onclick="startInsertionSort()" class="button">
+          Start Insertion Sort
+        </button>
+        <button
+          id="generateRandomButton"
+          onclick="generateRandomArray()"
+          class="button"
+        >
+          Generate Random Array
+        </button>
+        <div class="error-message" id="errorMessage"></div>
+      </div>
+      <div class="speed-control">
+        <label for="speedRange">Animation Speed (ms):</label>
+        <input
+          type="range"
+          id="speedRange"
+          min="100"
+          max="3000"
+          value="1550"
+          oninput="updateSpeed()"
+        />
+        <span id="speedValue">1550</span>
+      </div>
+      <div id="explanation" class="explanation">
+        Enter numbers and click "Start Insertion Sort" to begin.
+      </div>
+    </div>
+    <script>
+      let animationSpeed = 1550;
+      let sortingInProgress = false;
+
+      function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
+
+      function updateSpeed() {
+        const speedRange = document.getElementById("speedRange");
+        animationSpeed = speedRange.value;
+        document.getElementById("speedValue").textContent = speedRange.value;
+      }
+
+      function getAnimationSpeed() {
+        return animationSpeed;
+      }
+
+      function updateExplanation(text) {
+        document.getElementById("explanation").textContent = text;
+      }
+
+      async function insertionSort(items) {
+        const length = items.length;
+        const squares = document.getElementsByClassName("number-square");
+
+        for (let i = 1; i < length; i++) {
+          let j = i;
+          let currentValue = items[i];
+          squares[i].classList.add("selected");
+          updateExplanation(`Selected ${currentValue} for insertion`);
+          await sleep(getAnimationSpeed());
+
+          while (j > 0 && items[j - 1] > currentValue) {
+            squares[j].classList.add("active");
+            squares[j - 1].classList.add("active");
+            updateExplanation(`Comparing ${items[j - 1]} and ${currentValue}`);
+            await sleep(getAnimationSpeed());
+
+            squares[j].classList.remove("active");
+            squares[j - 1].classList.remove("active");
+            squares[j].classList.add("swapped");
+            squares[j - 1].classList.add("swapped");
+            updateExplanation(`Swapping ${items[j - 1]} and ${currentValue}`);
+            await sleep(getAnimationSpeed());
+
+            items[j] = items[j - 1];
+            items[j - 1] = currentValue;
+            squares[j].textContent = items[j];
+            squares[j - 1].textContent = items[j - 1];
+
+            await sleep(getAnimationSpeed());
+
+            squares[j].classList.remove("swapped");
+            squares[j - 1].classList.remove("swapped");
+
+            j--;
+          }
+
+          items[j] = currentValue;
+          squares[j].textContent = currentValue;
+          squares[i].classList.remove("selected");
+          await sleep(getAnimationSpeed());
+        }
+
+        for (let k = 0; k < length; k++) {
+          squares[k].classList.add("sorted");
+        }
+        updateExplanation("Sorting complete!");
+      }
+
+      function createSquares(numbers) {
+        const arrayContainer = document.getElementById("arrayContainer");
+        arrayContainer.innerHTML = "";
+        numbers.forEach((number) => {
+          const square = document.createElement("div");
+          square.classList.add("number-square");
+          square.textContent = number;
+          arrayContainer.appendChild(square);
+        });
+      }
+
+      async function startInsertionSort() {
+        if (sortingInProgress) return;
+
+        const inputField = document.getElementById("numbers");
+        const errorMessage = document.getElementById("errorMessage");
+        let numbers = inputField.value.split(",").map((num) => num.trim());
+
+        if (numbers.some((num) => isNaN(num) || num === "")) {
+          errorMessage.textContent =
+            "Please enter a valid comma-separated list of numbers.";
+          return;
+        }
+
+        errorMessage.textContent = "";
+        numbers = numbers.map(Number);
+
+        sortingInProgress = true;
+        document.getElementById("startButton").disabled = true;
+        createSquares(numbers);
+        await insertionSort(numbers);
+        sortingInProgress = false;
+        document.getElementById("startButton").disabled = false;
+      }
+
+      function generateRandomArray() {
+        const randomArray = Array.from({ length: 10 }, () =>
+          Math.floor(Math.random() * 100)
+        );
+        document.getElementById("numbers").value = randomArray.join(", ");
+      }
+    </script>
+  </body>
+</html>
+
+<!-- This code is contributed by Amirmahdi Monzavi -->

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DFS</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f4f8;
+        overflow-y: auto;
+        padding-top: 20px;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        width: 90%;
+        max-width: 800px;
+        padding-bottom: 20px;
+      }
+      .input-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+        width: 100%;
+      }
+      .input-field {
+        padding: 10px;
+        border: 2px solid #0074d9;
+        border-radius: 5px;
+        font-size: 16px;
+        width: 100%;
+        max-width: 400px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+      .input-field:focus {
+        border-color: #005bb5;
+        box-shadow: 0 0 10px rgba(0, 116, 217, 0.5);
+      }
+      .button {
+        background-color: #0074d9;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease,
+          box-shadow 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .button:hover {
+        background-color: #005bb5;
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .button:disabled {
+        background-color: #a0c4ff;
+        cursor: not-allowed;
+      }
+      .speed-control {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 20px;
+      }
+      .speed-control input {
+        width: 100%;
+        max-width: 200px;
+      }
+      .explanation {
+        margin-top: 20px;
+        font-size: 18px;
+        color: #0074d9;
+        text-align: center;
+        padding: 10px;
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+      .explored-nodes {
+        margin-top: 10px;
+        font-size: 16px;
+        color: #0074d9;
+        text-align: center;
+        padding: 10px;
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+      .error-message {
+        color: red;
+        font-size: 14px;
+      }
+      .tree-container {
+        width: 100%;
+        max-width: 1000px;
+        height: 600px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        overflow: auto;
+      }
+      @media (max-width: 600px) {
+        .tree-container {
+          height: 400px;
+        }
+      }
+    </style>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="input-container">
+        <input
+          type="text"
+          id="nodes"
+          class="input-field"
+          placeholder="Enter nodes (comma-separated)"
+          autocomplete="off"
+        />
+        <input
+          type="text"
+          id="edges"
+          class="input-field"
+          placeholder="Enter edges (format: node1-node2, comma-separated)"
+          autocomplete="off"
+        />
+        <button id="startButton" onclick="startDFS()" class="button">
+          Start DFS
+        </button>
+        <button
+          id="generateRandomButton"
+          onclick="generateRandomTree()"
+          class="button"
+        >
+          Generate Random Tree
+        </button>
+        <div class="error-message" id="errorMessage"></div>
+      </div>
+      <div class="speed-control">
+        <label for="speedRange">Animation Speed (ms):</label>
+        <input
+          type="range"
+          id="speedRange"
+          min="100"
+          max="3000"
+          value="1550"
+          oninput="updateSpeed()"
+        />
+        <span id="speedValue">1550</span>
+      </div>
+      <div id="explanation" class="explanation">
+        Enter nodes and edges, then click "Start DFS" to begin.
+      </div>
+      <div id="exploredNodes" class="explored-nodes">Explored Nodes:</div>
+      <div id="treeContainer" class="tree-container"></div>
+    </div>
+    <script>
+      let animationSpeed = 1550;
+      let traversalInProgress = false;
+      const containerWidth =
+        document.getElementById("treeContainer").clientWidth;
+      const containerHeight = 600;
+
+      function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
+
+      function updateSpeed() {
+        const speedRange = document.getElementById("speedRange");
+        animationSpeed = speedRange.value;
+        document.getElementById("speedValue").textContent = speedRange.value;
+      }
+
+      function getAnimationSpeed() {
+        return animationSpeed;
+      }
+
+      function updateExplanation(text) {
+        document.getElementById("explanation").textContent = text;
+      }
+
+      function updateExploredNodes(nodes) {
+        document.getElementById("exploredNodes").textContent =
+          "Explored Nodes: " + nodes.join(", ");
+      }
+
+      function createTree(nodes, edges) {
+        const treeData = d3.tree().nodeSize([70, 120])(
+          d3
+            .stratify()
+            .id((d) => d.id)
+            .parentId((d) => d.parent)(nodes)
+        );
+        const svgHeight = treeData.height * 150 + 200;
+        const svg = d3
+          .select("#treeContainer")
+          .append("svg")
+          .attr("width", containerWidth)
+          .attr("height", svgHeight)
+          .attr("viewBox", `0 0 ${containerWidth} ${svgHeight}`)
+          .attr("preserveAspectRatio", "xMidYMid meet");
+
+        const g = svg
+          .append("g")
+          .attr("transform", `translate(${containerWidth / 2}, 20)`);
+
+        const link = g
+          .selectAll(".link")
+          .data(treeData.links())
+          .enter()
+          .append("path")
+          .attr("class", "link")
+          .attr(
+            "d",
+            d3
+              .linkVertical()
+              .x((d) => d.x)
+              .y((d) => d.y)
+          )
+          .attr("fill", "none")
+          .attr("stroke", "#ccc")
+          .attr("stroke-width", 2);
+
+        const node = g
+          .selectAll(".node")
+          .data(treeData.descendants())
+          .enter()
+          .append("g")
+          .attr("class", "node")
+          .attr("transform", (d) => `translate(${d.x},${d.y})`);
+
+        node
+          .append("circle")
+          .attr("r", 18)
+          .attr("fill", "#0074d9")
+          .attr("stroke", "#fff")
+          .attr("stroke-width", 3);
+
+        node
+          .append("text")
+          .attr("dy", 6)
+          .attr("x", (d) => (d.children ? -19 : 19))
+          .style("text-anchor", (d) => (d.children ? "end" : "start"))
+          .text((d) => d.id)
+          .attr("fill", "#0074d9")
+          .attr("font-size", "12px");
+
+        return { svg, nodes, edges };
+      }
+
+      async function dfs(node, visited, nodesMap, svg) {
+        const stack = [node];
+        const exploredNodes = [];
+
+        while (stack.length > 0) {
+          const currentNode = stack.pop();
+          if (!visited.has(currentNode)) {
+            visited.add(currentNode);
+            exploredNodes.push(currentNode);
+            svg
+              .selectAll(".node circle")
+              .filter((d) => d.id === currentNode)
+              .attr("fill", "#03a9f4");
+            updateExplanation(`Visiting node ${currentNode}`);
+            updateExploredNodes(exploredNodes);
+            await sleep(getAnimationSpeed());
+
+            const neighbors = nodesMap.get(currentNode) || [];
+            neighbors.sort().reverse();
+            for (const neighbor of neighbors) {
+              if (!visited.has(neighbor)) {
+                stack.push(neighbor);
+              }
+            }
+
+            svg
+              .selectAll(".node circle")
+              .filter((d) => d.id === currentNode)
+              .attr("fill", "#4caf50");
+          }
+        }
+
+        updateExplanation("Traversal complete!");
+      }
+
+      function parseNodes(input) {
+        const nodes = input.split(",").map((node, index) => {
+          const trimmedNode = node.trim();
+          if (isNaN(trimmedNode))
+            throw new Error(`Node value '${trimmedNode}' is not a number.`);
+          return { id: trimmedNode, parent: index === 0 ? "" : null };
+        });
+        return nodes;
+      }
+
+      function parseEdges(input, nodes) {
+        const edges = input.split(",").map((edge) => edge.trim().split("-"));
+        const nodesMap = new Map();
+        const edgeSet = new Set();
+        const nodeIds = new Set(nodes.map((node) => node.id));
+        const hasParent = new Map();
+
+        function find(parent, vertex) {
+          if (parent[vertex] === vertex) {
+            return vertex;
+          }
+          return find(parent, parent[vertex]);
+        }
+
+        function union(parent, rank, x, y) {
+          const xroot = find(parent, x);
+          const yroot = find(parent, y);
+
+          if (rank[xroot] < rank[yroot]) {
+            parent[xroot] = yroot;
+          } else if (rank[xroot] > rank[yroot]) {
+            parent[yroot] = xroot;
+          } else {
+            parent[yroot] = xroot;
+            rank[xroot]++;
+          }
+        }
+
+        const parent = {};
+        const rank = {};
+        nodeIds.forEach((id) => {
+          parent[id] = id;
+          rank[id] = 0;
+          hasParent.set(id, false);
+        });
+
+        for (const [node1, node2] of edges) {
+          if (!nodeIds.has(node1) || !nodeIds.has(node2)) {
+            throw new Error(
+              `Edge includes node '${node1}' or '${node2}' that is not in nodes list.`
+            );
+          }
+          if (node1 === node2) {
+            throw new Error(`Edge cannot connect node '${node1}' to itself.`);
+          }
+
+          const sortedEdge = [node1, node2].sort().join("-");
+          if (edgeSet.has(sortedEdge)) {
+            throw new Error(
+              `Edge '${node1}-${node2}' is a duplicate or reversed edge.`
+            );
+          }
+          edgeSet.add(sortedEdge);
+
+          if (find(parent, node1) === find(parent, node2)) {
+            throw new Error(
+              `Graph contains a cycle with edge '${node1}-${node2}'.`
+            );
+          }
+
+          union(parent, rank, node1, node2);
+
+          if (!nodesMap.has(node1)) nodesMap.set(node1, []);
+          if (!nodesMap.has(node2)) nodesMap.set(node2, []);
+          nodesMap.get(node1).push(node2);
+          nodesMap.get(node2).push(node1);
+
+          hasParent.set(node2, true);
+        }
+
+        for (const node of nodeIds) {
+          if (!nodesMap.has(node)) {
+            throw new Error(`Node '${node}' is not connected by any edge.`);
+          }
+        }
+
+        edges.forEach(([node1, node2]) => {
+          const parentNode = nodes.find((n) => n.id === node1);
+          const childNode = nodes.find((n) => n.id === node2);
+          if (parentNode && childNode) {
+            childNode.parent = parentNode.id;
+          }
+        });
+
+        for (const [node, hasParentFlag] of hasParent.entries()) {
+          if (node !== nodes[0].id && !hasParentFlag) {
+            throw new Error(`Node '${node}' has no parent.`);
+          }
+        }
+
+        const visited = new Set();
+        const stack = [nodes[0].id];
+        while (stack.length > 0) {
+          const currentNode = stack.pop();
+          if (!visited.has(currentNode)) {
+            visited.add(currentNode);
+            const neighbors = nodesMap.get(currentNode) || [];
+            neighbors.forEach((neighbor) => {
+              if (!visited.has(neighbor)) {
+                stack.push(neighbor);
+              }
+            });
+          }
+        }
+
+        if (visited.size !== nodes.length) {
+          throw new Error(
+            "Graph is not fully connected. Some nodes are isolated."
+          );
+        }
+
+        return nodesMap;
+      }
+
+      async function startDFS() {
+        if (traversalInProgress) return;
+        traversalInProgress = true;
+        document.getElementById("startButton").disabled = true;
+
+        const inputFieldNodes = document.getElementById("nodes");
+        const inputFieldEdges = document.getElementById("edges");
+        const errorMessage = document.getElementById("errorMessage");
+        let nodes, nodesMap;
+
+        try {
+          nodes = parseNodes(inputFieldNodes.value);
+          nodesMap = parseEdges(inputFieldEdges.value, nodes);
+        } catch (error) {
+          errorMessage.textContent = error.message;
+          traversalInProgress = false;
+          document.getElementById("startButton").disabled = false;
+          return;
+        }
+
+        errorMessage.textContent = "";
+
+        d3.select("#treeContainer").selectAll("*").remove();
+        const { svg } = createTree(nodes, nodesMap);
+
+        const visited = new Set();
+        await dfs(nodes[0].id, visited, nodesMap, svg);
+        traversalInProgress = false;
+        document.getElementById("startButton").disabled = false;
+      }
+
+      function generateRandomTree() {
+        const nodes = Array.from({ length: 10 }, (_, i) => i.toString());
+        const edges = [];
+        const edgeSet = new Set();
+        for (let i = 1; i < nodes.length; i++) {
+          const parent = Math.floor(Math.random() * i);
+          const sortedEdge = [parent, i].sort().join("-");
+          if (!edgeSet.has(sortedEdge)) {
+            edges.push(`${parent}-${i}`);
+            edgeSet.add(sortedEdge);
+          }
+        }
+        document.getElementById("nodes").value = nodes.join(", ");
+        document.getElementById("edges").value = edges.join(", ");
+      }
+    </script>
+  </body>
+</html>
+
+<!-- This code is contributed by Amirmahdi Monzavi -->
