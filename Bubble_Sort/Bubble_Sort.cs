@@ -1,36 +1,46 @@
-public class Algo_BubbleSort
+
+//  Bubble Sort in C#
+using System;
+
+public class Bubble_Sort
 {
-
-
-    public static void Main()
+    // Bubble Sort function
+    public static void BubbleSort(int[] arr)
     {
-        int[] nums = { 64, 34, 25, 12, 22, 11, 90 };
-        Sort(nums);
-        Print(nums);
-    }
-
-    public static void Sort(int[] nums)
-    {
-        for(var i = 0; i < nums.Length; i++)
+        int n = arr.Length;
+        bool swapped;
+        for (int i = 0; i < n - 1; i++)
         {
-            for(var j = 0; j < nums.Length - i - 1; ++j)
+            swapped = false;
+            for (int j = 0; j < n - i - 1; j++)
             {
-                if (nums[j] > nums[j + 1])
+                if (arr[j] > arr[j + 1])
                 {
-                    // swap 
-                    var temp = nums[j];
-                    nums[j] = nums[j + 1];
-                    nums[j + 1] = temp;
+                    (arr[j], arr[j + 1]) = (arr[j + 1], arr[j]);
+                    swapped = true;
                 }
             }
+            // If no two elements were swapped
+            // by inner loop, then break
+            if (!swapped)
+                break;
         }
     }
 
-    public static void Print(int[] nums)
+    // Function to print an array
+    public static void PrintArray(int[] arr)
     {
-        foreach(var i in nums)
-        {
-            Console.WriteLine(i);
-        }
+        foreach (int i in arr)
+            Console.Write(" " + i);
+    }
+
+    public static void Main(string[] args)
+    {
+        int[] arr = { 64, 34, 25, 12, 22, 11, 90 };
+        BubbleSort(arr);
+        Console.WriteLine("Sorted array: ");
+        PrintArray(arr);
     }
 }
+
+// This code is contributed by Ali Barzegari Dahaj
