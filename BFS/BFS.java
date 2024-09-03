@@ -2,12 +2,12 @@
 
 import java.util.*;
 
-public class Graph {
+public class BFS {
   private int V;
   private LinkedList<Integer> adj[];
 
   // Create a graph
-  Graph(int v) {
+  BFS(int v) {
     V = v;
     adj = new LinkedList[v];
     for (int i = 0; i < v; ++i)
@@ -45,7 +45,7 @@ public class Graph {
   }
 
   public static void main(String args[]) {
-    Graph g = new Graph(4);
+    BFS g = new BFS(4);
 
     g.addEdge(0, 1);
     g.addEdge(0, 2);
